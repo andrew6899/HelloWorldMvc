@@ -1,0 +1,12 @@
+#settings file
+appsettings.json
+
+#directories for bower
+HelloWorldMvc/Migrations
+HelloWorldMvc/bin
+HelloWorldMvc/bower_components
+HelloWorldMvc/node_modules
+
+#minified files
+HelloWorldMvc/wwwroot/resources/css/site.min.css
+HelloWorldMvc/wwwroot/resources/js/site.min.js
