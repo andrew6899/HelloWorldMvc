@@ -42,6 +42,7 @@ namespace HelloWorldMvc
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddTransient<IMessageRepository, MessageRepository>();
+            //services.AddTransient<MockMessageRepository>();
 
 
             services.AddMvc()

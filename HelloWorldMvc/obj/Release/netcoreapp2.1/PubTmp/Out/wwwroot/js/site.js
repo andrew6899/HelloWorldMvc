@@ -1,8 +1,8 @@
 ﻿var stat = $("#status");
 var statText = $("#status span");
+var messageId = $("#msgId");
+var messageCount = $(".message-count span");
 $(document).ready(function () {
-    var messageId = $("#msgId");
-
     //on change listener for message id
     $("#msgId").change(function () {
         getMessage();
@@ -31,9 +31,13 @@ function purgeMessages() {
         url: "/Home/ModifyMessages",
         data: JSON.stringify(purgeMessage),
         success: function (response) {
+            //var obj = JSON.parse(response);
             console.log("Purge Complete");
-            statText.html(response);
+            statText.html(response.status);
             statuschange();
+            //display the remaining message
+            messageId.val(1);
+            getMessage();
         },
         error: function (xhr, error) {
             console.log("Something went wrong! " + xhr + ", " + error);
@@ -43,9 +47,10 @@ function purgeMessages() {
 
     });
 }
-var b;
+
 function getMessage() {
-    var displayedMessage = $("#cm span").html();
+    var displayedMessage = $("#cm input");
+    var messageCount = $(".message-count span");
     var messageId = $("#msgId").val();
     $.ajax({
         contentType: "application/json; charset=utf-8",
@@ -55,22 +60,31 @@ function getMessage() {
         data: JSON.stringify(messageId),
         success: function (response) {
             console.log("Message retrieved");
-            console.log(response);
-            b = response;
+            
             //var obj = JSON.parse(response);
             //console.log("GreetingMessageId: " + obj.GreetingMessageId + ", " + "GreetingMessage: " + obj.GreetingMessage);
-            var mid = response.greetingMessageId;
-            var mtext = response.greetingMessage;
+
+            var mid = response.message.greetingMessageId;
+            var mtext = response.message.greetingMessage;
+            var mcount = response.info.count;
+            var mstatus = response.info.status;
+            console.log("Message Info: count=" + mcount + ", status=" + mstatus + ". Message: GreetingMessageId=" + mid + "GreetingMessage=" + mtext);
+            //var mid = response.greetingMessageId;
+            //var mtext = response.greetingMessage;
+
+            //messageCount.html("You are viewing message " + " of " + response.count);
+
+            messageCount.html(mstatus);
 
             if (mtext !== null) {
                 $("#msgId").val(mid);
-                $("#cm span").html(mtext);
-                console.log("GreetingMessageId: " + response.greetingMessageId + ", GreetingMessage: " + response.greetingMessage);
+                displayedMessage.val(mtext);
+                //console.log("GreetingMessageId: " + response.greetingMessageId + ", GreetingMessage: " + response.greetingMessage);
             }
             else {
                 $("#msgId").val(1);
                 $("#cm span").html("Hello World!");
-                console.log("Id is out of range");
+                //console.log("Id is out of range");
             }
         },
         complete: function () {
@@ -84,7 +98,6 @@ function getMessage() {
 
 function addMessage() {
     var addedMessage = $("#addedMessage").val();
-    
     var themessage = {
         GreetingMessageId: "0",
         GreetingMessage: addedMessage
@@ -100,7 +113,7 @@ function addMessage() {
             console.log("Message successfully recorded");
             console.log(response);
             $("#addedMessage").val("");
-            statText.html(response);
+            statText.html(response.status);
             statuschange();
         },
         error: function (xhr, error) {

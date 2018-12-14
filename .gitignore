@@ -1,12 +1,26 @@
 #settings file
 appsettings.json
 
+#git related files
+.git
+.vs
+
+
 #directories for bower
 HelloWorldMvc/Migrations
 HelloWorldMvc/bin
+HelloWorldMvc/obj
 HelloWorldMvc/bower_components
 HelloWorldMvc/node_modules
+HelloWorldMvc/wwwroot/lib
+HelloWorldMvc/wwwroot/images
+
 
 #minified files
-HelloWorldMvc/wwwroot/resources/css/site.min.css
-HelloWorldMvc/wwwroot/resources/js/site.min.js
+HelloWorldMvc/wwwroot/css/sitestyles.min.css
+HelloWorldMvc/wwwroot/js/site.min.js
+
+#bin files and directories
+UnitTest/bin
+UnitTest/obj
+

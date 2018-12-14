@@ -30,15 +30,39 @@ body {
 
 
 .message-container {
-    width:434px;
+    width:360px;
     position:relative;
     display:block;
 }
+.message-container label, .controls label {
+    width:174px;
+    padding:3px;
+}
+
+.message-container input, .controls input, .message-count input {
+    background-color:#fff;
+    border:1px solid #9a9a9a;
+    padding:3px;
+    float:right;
+}
+
+.message-container button, .controls button {
+    float:right;
+    margin-left:8px;
+    margin-top:36px;
+}
+
+.message-count {
+    padding: 8px;
+}
+.message-count span {
+    margin-left:174px;
+}
+
 .controls {
-    position:relative;
-    display:block;
-    margin-top:30px;
-    width:434px;
+    position: relative;
+    display: block;
+    width: 360px;
 }
 
 #status {

@@ -65,19 +65,21 @@
         <div class="message-container">
             <div id="cm" class="current-message">
                 <label>Message:</label>
-                <span>@msg</span>
+                <input type="text" disabled value="@msg"/>
             </div>
+        </div>
+        <div class="message-count">
+            <span></span>
         </div>
     </div>
     <div class="col-xs-offset-2 col-xs-10">
         <div class="controls">
             <label>Get Message by Id:</label>
-            <input id="msgId" type="number" value="1" />
+            <input id="msgId" type="number" min="1" value="1" />
             <br />
             <label>Add new message:</label>
             <input id="addedMessage" type="text" />
             <button id="submit" value="Add">Add Message</button>
-            <br /><br />
             <button id="purge">Purge Messages</button>
             <div id="status">
                 <span></span>
